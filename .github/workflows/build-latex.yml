@@ -27,12 +27,16 @@ jobs:
       - name: Compile standalone paper
         run: cd standalone && make
 
+      - name: Compile simple statement
+        run: cd simple-statement && make
+
       - name: Copy PDFs to root with descriptive names
         run: |
           cp acm-paper/main.pdf acm-paper.pdf
           cp ieee-paper/main.pdf ieee-paper.pdf
           cp acl-paper/main.pdf acl-paper.pdf
           cp standalone/main.pdf standalone.pdf
+          cp simple-statement/main.pdf simple-statement.pdf
 
       - uses: actions/upload-artifact@v7
         with:
@@ -42,6 +46,7 @@ jobs:
             ieee-paper.pdf
             acl-paper.pdf
             standalone.pdf
+            simple-statement.pdf
 
       - name: Update git tag
         run: |
@@ -55,7 +60,7 @@ jobs:
           tag: auto-compile
           body: automatically compiled on sha ${{ github.sha }}
           allowUpdates: true
-          artifacts: "acm-paper.pdf,ieee-paper.pdf,acl-paper.pdf,standalone.pdf"
+          artifacts: "acm-paper.pdf,ieee-paper.pdf,acl-paper.pdf,standalone.pdf,simple-statement.pdf"
           prerelease: true
 
   compile-macos:
@@ -90,12 +95,16 @@ jobs:
       - name: Compile standalone paper
         run: cd standalone && make
 
+      - name: Compile simple statement
+        run: cd simple-statement && make
+
       - name: Copy PDFs to root with descriptive names
         run: |
           cp acm-paper/main.pdf acm-paper.pdf
           cp ieee-paper/main.pdf ieee-paper.pdf
           cp acl-paper/main.pdf acl-paper.pdf
           cp standalone/main.pdf standalone.pdf
+          cp simple-statement/main.pdf simple-statement.pdf
 
       - uses: actions/upload-artifact@v7
         with:
@@ -105,3 +114,4 @@ jobs:
             ieee-paper.pdf
             acl-paper.pdf
             standalone.pdf
+            simple-statement.pdf

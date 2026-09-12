@@ -1,0 +1,53 @@
+\documentclass{statement}
+
+\statement{Project Summary}
+\name{Pengyu Nie}
+
+\input{macros}
+
+\begin{document}
+
+\input{text/statement}
+
+% End of main text, begin of CV bib etc.
+\clearpage\newpage
+\pagestyle{none}
+
+% \includepdf[pages=-,pagecommand={},width=\textwidth,linktodoc=true]{CV_Pengyu_Nie.pdf}
+
+\clearpage\newpage
+% Slightly condensed bib
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setstretch{0.95}
+  \setlength{\itemsep}{1pt plus 0.2ex}
+}
+{
+  \bibliographystyle{unsrtnat_etal}
+  \bibliography{bib}
+}
+
+% % Condensed bib
+% \vspace{-8pt}
+% \let\OLDthebibliography\thebibliography
+% \renewcommand\thebibliography[1]{
+%   \OLDthebibliography{#1}
+%   \setstretch{0.9}
+%   \setlength{\parskip}{0pt}
+%   \setlength{\itemsep}{0pt plus 0ex}
+%   \vspace{-10pt}
+% }
+
+% %\newpage
+% {
+% \begin{multicols}{2}
+%   \scriptsize
+%   \bibliographystyle{unsrtnat_etal}
+%   \bibliography{bib}
+%   \scriptsize
+% \end{multicols}
+% }
+% }
+
+\end{document}
