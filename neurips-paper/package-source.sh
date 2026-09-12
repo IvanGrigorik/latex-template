@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -x
 set -e
@@ -9,7 +9,7 @@ mkdir source
 python3 format.py main.tex
 mv formatted.tex source/main.tex
 
-# ACL-specific
+# NeurIPS-specific
 cp main.bbl neurips_2026.sty source/
 
 cp -r defs source/

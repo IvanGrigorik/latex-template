@@ -1,9 +1,12 @@
 MAIN := main
 TARGETS := $(MAIN)
 
-TARGETS_PATTERN := ($(shell echo $(TARGETS) | sed 's/ /|/g'))
-DEPENDENCIES := $(shell find . -type f | grep -v -E "/$(TARGETS_PATTERN)\." | grep -v -E "\.gitignore|pdflatex2041000\.fls|\.DS_Store|\*~")
-
+DEPENDENCIES := $(shell find . -type f \
+	! -name '.gitignore' \
+	! -name '.DS_Store' \
+	! -name '*~' \
+	! -name 'pdflatex2041000.fls' \
+	$(foreach t,$(TARGETS),! -name '$(t).*'))
 
 .PHONY: all
 all: $(TARGETS:=.pdf)
