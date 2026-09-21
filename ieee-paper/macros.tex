@@ -59,12 +59,17 @@
 \newcommand{\DefMacro}{\@ifstar\@DefMacroAllowRedefine\@DefMacro}
 \newcommand{\@DefMacro}[2]{\expandafter\newcommand\csname rmk-#1\endcsname{#2}}
 \newcommand{\@DefMacroAllowRedefine}[2]{\expandafter\providecommand\csname rmk-#1\endcsname{} \expandafter\renewcommand\csname rmk-#1\endcsname{#2}}
+\newcommand{\linebreakand}{%
+      \end{@IEEEauthorhalign}
+      \hfill\mbox{}\par
+      \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
 \makeatother
 \newcommand{\UseMacro}[1]{\csname rmk-#1\endcsname}
 
 % for commenting. Make sure they are not used in the submitted version (try compiling with them commented out)
 \newcommand{\Fix}[1]{\textcolor{red}{#1}}
-\newcommand{\pengyu}[1]{\textcolor{blue}{#1}}
+\newcommand{\ig}[1]{\textcolor{teal}{#1}}
 
 % for showing diff (for camera ready, major revision etc.)
 % uncomment to show the colored diff
@@ -73,13 +78,6 @@
 \newcommand{\EditMod}[2]{\textcolor{red}{\sout{#1}}\textcolor{blue}{#2}}
 \newcommand{\EditMvAdd}[1]{\textcolor{yellow}{#1}}
 \newcommand{\EditMvRm}[1]{\textcolor{yellow}{\sout{#1}}}
-
-% uncomment to show the new version
-% \newcommand{\EditAdd}[1]{#1}
-% \newcommand{\EditRm}[1]{}
-% \newcommand{\EditMod}[2]{#2}
-% \newcommand{\EditMvAdd}[1]{#1}
-% \newcommand{\EditMvRm}[1]{}
 
 % for cutting single words / short phrases
 \newcommand{\XSpace}[1]{}
@@ -108,34 +106,11 @@
 % for including revision info in the document
 \newcommand{\RevisionInfo}{\Fix{Time: \today{} at \currenttime{.}}}
 
-\input{defs/defs-logic} % for logic symbols
-\input{defs/defs-code} % for code listings
+
+%%%----------
+%%% User-defined macros
 
 
 %%%----------
-%%% Macros
+%%% Auto-generated macros for eval (appended here)
 
-%%% Text
-
-%\newcommand{\Tool}{\textsc{Tool}\xspace}
-\newcommand{\Title}{Title}
-
-%\newcommand{\lowercase}{lower case\xspace}
-%\newcommand{\Firstcap}{First cap\xspace}
-%\newcommand{\CamelCase}{Camel Case\xspace}
-
-%%% Code
-%\newcommand{\aVar}{\CodeIn{var}\xspace}
-
-%%% Tables
-
-% Captions
-%\DefMacro{TC-xxx}{Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.\label{fig:table:xxx}}
-
-% Headers
-%\DefMacro{TH-xxx}{Yyy\xspace}
-
-
-%%% Numbers
-
-%\input{tables/numbers-xxx}

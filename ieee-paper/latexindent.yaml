@@ -1,0 +1,30 @@
+# `latexindent` tool specification file (same as `.clang-format`)
+
+# Indentation preferences
+defaultIndent: "      "       # Use 4 spaces for indentation (or use "\t" for tabs)
+
+# - 4.x started adding an extra level of indentation 
+noAdditionalIndent:
+  always-un-named: 1
+
+# - 4.x's fineTuning regex for "named grouping braces"
+fineTuning:
+  namedGroupingBracesBrackets:
+    name: [0-9\.a-zA-Z@\*><]+?
+    follow: \h|\R|\{|\[|\$|\)|\(
+
+# Backup options
+backupExtension: .bak       # File extension used for automatic backups
+onlyOneBackUp: 1            # 1 = overwrite previous backup, 0 = keep all backups
+maxNumberOfBackUps: 3       # Max number of backups to keep if onlyOneBackUp is 0
+
+# Verbatim environments to skip formatting
+verbatimEnvironments:
+  customCode: 1             # Adds \begin{customCode} to the ignore list
+
+# File extensions to look for if none is provided
+fileExtensionPreference:
+  tex: 1
+  sty: 2
+  cls: 3
+  bib: 4
