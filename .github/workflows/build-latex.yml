@@ -11,6 +11,8 @@ jobs:
   compile-linux:
     runs-on: ubuntu-latest
     container: texlive/texlive:latest
+    permissions:
+      contents: write
     concurrency:
       group: global
       cancel-in-progress: true
