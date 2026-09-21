@@ -4,6 +4,9 @@ on:
   push:
     branches: [master, main]
 
+env:
+  PAPERS: ieee-paper standalone
+
 jobs:
   compile-linux:
     runs-on: ubuntu-latest
@@ -15,38 +18,26 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Compile ACM paper
-        run: cd acm-paper && make
-
-      - name: Compile IEEE paper
-        run: cd ieee-paper && make
-
-      - name: Compile ACL paper
-        run: cd acl-paper && make
-
-      - name: Compile standalone paper
-        run: cd standalone && make
-
-      - name: Compile simple statement
-        run: cd simple-statement && make
+      - name: Compile papers
+        run: |
+          for paper in $PAPERS; do
+            echo "::group::$paper"
+            make -C "$paper"
+            echo "::endgroup::"
+          done
 
       - name: Copy PDFs to root with descriptive names
         run: |
-          cp acm-paper/main.pdf acm-paper.pdf
-          cp ieee-paper/main.pdf ieee-paper.pdf
-          cp acl-paper/main.pdf acl-paper.pdf
-          cp standalone/main.pdf standalone.pdf
-          cp simple-statement/main.pdf simple-statement.pdf
+          for paper in $PAPERS; do
+            cp "$paper/main.pdf" "$paper.pdf"
+          done
 
       - uses: actions/upload-artifact@v7
         with:
           name: pdfs-linux
           path: |
-            acm-paper.pdf
             ieee-paper.pdf
-            acl-paper.pdf
             standalone.pdf
-            simple-statement.pdf
 
       - name: Update git tag
         run: |
@@ -60,7 +51,7 @@ jobs:
           tag: auto-compile
           body: automatically compiled on sha ${{ github.sha }}
           allowUpdates: true
-          artifacts: "acm-paper.pdf,ieee-paper.pdf,acl-paper.pdf,standalone.pdf,simple-statement.pdf"
+          artifacts: "ieee-paper.pdf,standalone.pdf"
           prerelease: true
 
   compile-macos:
@@ -83,35 +74,23 @@ jobs:
             collection-pictures
             collection-bibtexextra
 
-      - name: Compile ACM paper
-        run: cd acm-paper && make
-
-      - name: Compile IEEE paper
-        run: cd ieee-paper && make
-
-      - name: Compile ACL paper
-        run: cd acl-paper && make
-
-      - name: Compile standalone paper
-        run: cd standalone && make
-
-      - name: Compile simple statement
-        run: cd simple-statement && make
+      - name: Compile papers
+        run: |
+          for paper in $PAPERS; do
+            echo "::group::$paper"
+            make -C "$paper"
+            echo "::endgroup::"
+          done
 
       - name: Copy PDFs to root with descriptive names
         run: |
-          cp acm-paper/main.pdf acm-paper.pdf
-          cp ieee-paper/main.pdf ieee-paper.pdf
-          cp acl-paper/main.pdf acl-paper.pdf
-          cp standalone/main.pdf standalone.pdf
-          cp simple-statement/main.pdf simple-statement.pdf
+          for paper in $PAPERS; do
+            cp "$paper/main.pdf" "$paper.pdf"
+          done
 
       - uses: actions/upload-artifact@v7
         with:
           name: pdfs-macos
           path: |
-            acm-paper.pdf
             ieee-paper.pdf
-            acl-paper.pdf
             standalone.pdf
-            simple-statement.pdf
